@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Customers | GST Bill Book{% endblock %}
+
+{% block content %}
+<section class="p-5 bg-white shadow rounded">
+    <h2>Customers</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    {% for month in months %}
+                    <th>{{ month }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for customer in customers %}
+                <tr>
+                    <td>{{ customer }}</td>
+                    {% for month in months %}
+                    <td>{{ monthly_spending.get(customer, {}).get(month, 0) }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

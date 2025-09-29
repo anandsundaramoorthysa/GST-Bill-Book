@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% block title %}Sign Up | GST Bill Book{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='signup.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="signup-form">
+    <h2 class="text-center">Create Your Account</h2>
+            <div id="username-error-message" class="alert alert-danger" style="display: none;"></div>
+            <div id="gst-number-error-message" class="alert alert-danger" style="display: none;"></div>
+            <div id="contact-number-error-message" class="alert alert-danger" style="display: none;"></div>
+             <div id="email-error-message" class="alert alert-danger" style="display: none;"></div>
+            <form action="{{ url_for('signup') }}" method="POST" id="signup-form">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" name="username" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="business_name" class="form-label">Business Name</label>
+                    <input type="text" id="business_name" name="business_name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="gst_number" class="form-label">GST Number</label>
+                    <input type="text" id="gst_number" name="gst_number" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="contact_number" class="form-label">Contact Number</label>
+                    <input type="tel" id="contact_number" name="contact_number" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="confirm_password" class="form-label">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="business_type" class="form-label">Business Type</label>
+                    <select class="form-select" id="business_type" name="business_type">
+                        <option value="retail">Retail</option>
+                        <option value="service">Service</option>
+                        <option value="manufacturing">Manufacturing</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+            </form>
+            <p class="text-center mt-3">Already have an account? <a class="text-primary fw-bold" href="{{ url_for('login') }}">Login here</a></p>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+         document.getElementById('username').addEventListener('blur', function() {
+        const username = this.value;
+        const errorMessageDiv = document.getElementById('username-error-message');
+
+        fetch('/check_username', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username
+            })
+        })
+        .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+        .then(data => {
+            if (data.exists) {
+                errorMessageDiv.textContent = 'This username is already taken. Please choose a different one.';
+                errorMessageDiv.style.display = 'block';
+            } else {
+                errorMessageDiv.style.display = 'none';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            errorMessageDiv.textContent = 'An error occurred. Please try again.';
+            errorMessageDiv.style.display = 'block';
+        });
+    });
+     document.getElementById('gst_number').addEventListener('blur', function() {
+        const gstNumber = this.value;
+        const errorMessageDiv = document.getElementById('gst-number-error-message');
+
+        fetch('/check_gst_number', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                gst_number: gstNumber
+            })
+        })
+        .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+        .then(data => {
+            if (data.exists) {
+                errorMessageDiv.textContent = 'This GST Number is already registered. Please use a different one.';
+                errorMessageDiv.style.display = 'block';
+            } else {
+                errorMessageDiv.style.display = 'none';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            errorMessageDiv.textContent = 'An error occurred. Please try again.';
+            errorMessageDiv.style.display = 'block';
+        });
+    });
+
+    document.getElementById('contact_number').addEventListener('blur', function() {
+        const contactNumber = this.value;
+        const errorMessageDiv = document.getElementById('contact-number-error-message');
+
+        fetch('/check_contact_number', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                contact_number: contactNumber
+            })
+        })
+        .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+        .then(data => {
+            if (data.exists) {
+                errorMessageDiv.textContent = 'This Contact Number is already registered. Please use a different one.';
+                errorMessageDiv.style.display = 'block';
+            } else {
+                errorMessageDiv.style.display = 'none';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            errorMessageDiv.textContent = 'An error occurred. Please try again.';
+            errorMessageDiv.style.display = 'block';
+        });
+    });
+    
+     document.getElementById('email').addEventListener('blur', function() {
+            const email = this.value;
+            const errorMessageDiv = document.getElementById('email-error-message');
+
+            fetch('/check_email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.exists) {
+                    errorMessageDiv.textContent = 'This email address is already registered. Please use a different one.';
+                    errorMessageDiv.style.display = 'block';
+                } else {
+                    errorMessageDiv.style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                errorMessageDiv.textContent = 'An error occurred. Please try again.';
+                errorMessageDiv.style.display = 'block';
+            });
+        });
+
+    document.getElementById('signup-form').addEventListener('submit', function(event) {
+        const usernameErrorMessageDiv = document.getElementById('username-error-message');
+        const gstNumberErrorMessageDiv = document.getElementById('gst-number-error-message');
+        const contactNumberErrorMessageDiv = document.getElementById('contact-number-error-message');
+        const emailErrorMessageDiv = document.getElementById('email-error-message');
+
+        if (usernameErrorMessageDiv.style.display === 'block' ||
+            gstNumberErrorMessageDiv.style.display === 'block' ||
+            contactNumberErrorMessageDiv.style.display === 'block' ||
+            emailErrorMessageDiv.style.display === 'block') {
+            event.preventDefault(); 
+        }
+    });
+    </script>
+{% endblock %}

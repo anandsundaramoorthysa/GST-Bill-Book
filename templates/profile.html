@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Profile | GST Bill Book{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    .profile-icon {
+        font-size: 3em;
+        margin-bottom: 15px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="p-5">
+    <h2>User Profile</h2>
+    {% if user %}
+    <div class="card">
+        <div class="card-body text-center">
+            <i class="fas fa-user-circle profile-icon"></i>
+            <h5 class="card-title">{{ user.business_name }}</h5>
+            <p class="card-text">Username: {{ user.username }}</p>
+            <p class="card-text">GST Number: {{ user.gst_number }}</p>
+            <p class="card-text">Contact Number: {{ user.contact_number }}</p>
+            <p class="card-text">Email: {{ user.email }}</p>
+            <p class="card-text">Business Type: {{ user.business_type }}</p>
+        </div>
+    </div>
+    {% else %}
+    <p>No user information available.</p>
+    {% endif %}
+</section>
+{% endblock %}

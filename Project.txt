@@ -1,0 +1,139 @@
+Project Overview
+The project is a basic business management system that allows users to manage customers, products, and invoices. It includes user authentication (sign up and login), basic CRUD operations (Create, Read, Update, Delete) for managing customer and product data, and the ability to generate invoices. The application is built using Flask with a simple user interface and SQLite as the database.
+
+Key Features
+User Authentication
+
+Login: Users can log in with their email and password. Passwords are hashed for security.
+Sign Up: New users can create an account with their name, email, and password. The password is hashed before being stored in the database.
+Logout: Users can log out, which clears the session.
+Customer Management
+
+View Customers: Users can see a list of customers stored in the database.
+Add Customer: Users can add new customers by entering details like name, email, and phone number.
+Edit Customer: Users can update customer details like name and phone number.
+Product Management
+
+View Products: Users can see a list of products available.
+Add Product: Users can add products by entering the name, category, and price.
+Invoice Generation
+
+Create Invoice: Users can create an invoice by selecting a customer and adding products with their quantities.
+View Invoices: Users can view the list of invoices created, which includes the customer’s name and the total amount.
+Profile Management
+
+View and Edit Profile: Users can view and update their profile, such as their name, email, and password.
+Backend Technologies
+Flask: Handles routing, request handling, and user session management.
+SQLite: Stores user, customer, product, and invoice data in a lightweight database.
+Werkzeug: Used for hashing passwords securely.
+WTForms: Used for handling and validating forms (e.g., sign-up, login, add customer, etc.).
+Frontend Technologies
+HTML: Used for structuring the pages.
+Jinja2: Template engine used to dynamically generate HTML pages based on backend data.
+Bootstrap: For simple and responsive styling.
+Database Models
+User: Stores user information (name, email, password).
+Customer: Stores customer details (name, email, phone number).
+Product: Stores product information (name, category, price).
+Invoice: Stores invoice details (customer ID, total amount).
+InvoiceItem: Stores each product in an invoice (product ID, quantity, price).
+Features & Functionality
+User Authentication:
+
+Users can sign up, log in, and log out.
+Passwords are hashed using Werkzeug for security.
+Customer Management:
+
+View the list of customers with their basic details.
+Add, update, or delete customer records.
+Product Management:
+
+Add new products with name, category, and price.
+View a list of all products.
+Invoice Management:
+
+Create an invoice by selecting a customer and adding products to the invoice.
+View all generated invoices, showing total amounts.
+Profile Management:
+
+Users can view and edit their profile, such as name and email.
+Simplified Project Flow
+Login Page:
+
+Users can log in with their email and password.
+After successful login, they are redirected to the dashboard.
+Dashboard:
+
+Provides links to manage customers, products, and invoices.
+Customers Page:
+
+Displays all customers.
+Allows users to add new customers or edit existing ones.
+Products Page:
+
+Displays all products.
+Allows users to add new products to the catalog.
+Invoices Page:
+
+Allows users to create invoices by selecting a customer and adding products with quantities.
+Shows a list of created invoices with total amounts.
+Profile Page:
+
+Users can view and update their profile information (name, email, password).
+Simplified Database Structure
+User table: Stores user information with columns like id, name, email, password_hash.
+Customer table: Stores customer data with columns like id, name, email, phone.
+Product table: Stores product details with columns like id, name, category, price.
+Invoice table: Stores invoice details with columns like id, customer_id, total_amount.
+InvoiceItem table: Stores items in an invoice with columns like id, invoice_id, product_id, quantity, price.
+Database Example (SQLite)
+sql
+Copy
+Edit
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL UNIQUE,
+  password_hash TEXT NOT NULL
+);
+
+CREATE TABLE customers (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT
+);
+
+CREATE TABLE products (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  category TEXT NOT NULL,
+  price REAL NOT NULL
+);
+
+CREATE TABLE invoices (
+  id INTEGER PRIMARY KEY,
+  customer_id INTEGER,
+  total_amount REAL NOT NULL,
+  FOREIGN KEY (customer_id) REFERENCES customers(id)
+);
+
+CREATE TABLE invoice_items (
+  id INTEGER PRIMARY KEY,
+  invoice_id INTEGER,
+  product_id INTEGER,
+  quantity INTEGER NOT NULL,
+  price REAL NOT NULL,
+  FOREIGN KEY (invoice_id) REFERENCES invoices(id),
+  FOREIGN KEY (product_id) REFERENCES products(id)
+);
+Project Conclusion
+This simplified version of the business management system provides core features for managing customers, products, and invoices, with basic user authentication. It’s a manageable mini project that focuses on learning how to build CRUD applications with Flask and SQLite, handling user authentication, and performing basic operations like creating and viewing customers, products, and invoices.
+
+
+
+
+
+
+

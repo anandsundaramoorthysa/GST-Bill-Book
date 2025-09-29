@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Invoice {{ invoice.invoice_number }} | GST Bill Book{% endblock %}
+
+{% block content %}
+<section class="p-5 bg-white shadow rounded">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">Invoice {{ invoice.invoice_number }}</h2>
+        <a class="btn btn-sm btn-secondary" href="{{ url_for('invoices') }}">Back</a>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="border rounded p-3">
+                <div><strong>Date:</strong> {{ invoice.date.strftime('%Y-%m-%d') if invoice.date else '' }}</div>
+                <div><strong>Customer:</strong> {{ invoice.customer_name }}</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="border rounded p-3">
+                <div><strong>Discount:</strong> {{ '%.2f'|format(invoice.discount) }}</div>
+                <div><strong>Tax:</strong> {{ '%.2f'|format(invoice.tax) }}</div>
+                <div><strong>Total:</strong> {{ '%.2f'|format(invoice.total_amount) }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    <td>{{ row.item }}</td>
+                    <td>{{ row.quantity }}</td>
+                    <td>{{ '%.2f'|format(row.price) }}</td>
+                    <td>{{ '%.2f'|format(row.amount) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}
+
+

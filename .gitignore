@@ -1,0 +1,45 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Build / dist
+build/
+dist/
+*.egg-info/
+
+# Testing / coverage
+.pytest_cache/
+.coverage*
+htmlcov/
+
+# Type checker
+.mypy_cache/
+.pytype/
+
+# Caches
+.cache/
+
+# Environment variables
+.env
+.env.*
+
+# SQLite databases
+*.sqlite3
+instance/*.db
+instance/database.db
+
+# Node (if ever used)
+node_modules/
+

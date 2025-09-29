@@ -1,0 +1,157 @@
+/* General body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Main section styling */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+    padding: 20px;
+}
+
+/* Signup form styling */
+.signup-form {
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.signup-form h2 {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 25px;
+    color: #007BFF;
+}
+
+/* Form input styles */
+.signup-form .form-label {
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.signup-form .form-control {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease;
+}
+
+.signup-form .form-control:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+/* Submit button styles */
+.signup-form .btn-primary {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.signup-form .btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.signup-form .btn-primary:focus {
+    outline: none;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+}
+
+/* "Already have an account" text styling */
+.signup-form p {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 1rem;
+}
+
+/* Link styling */
+.signup-form a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.signup-form a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    main {
+        padding: 10px;
+    }
+
+    .signup-form {
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .signup-form h2 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    .signup-form .form-control {
+        padding: 10px;
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+    }
+
+    .signup-form .btn-primary {
+        padding: 12px;
+        font-size: 1rem;
+    }
+
+    .signup-form p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Navigation styles (if needed) */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #FFD700;
+}

@@ -1,0 +1,59 @@
+/* Centering the main content */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+/* Styling the login section */
+main section {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form fields */
+form .form-control {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+/* Login button */
+button {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Sign-up link */
+p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+p a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 480px) {
+    main section {
+        width: 90%;
+    }
+}

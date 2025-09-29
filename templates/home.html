@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Home | GST Bill Book{% endblock %}
+
+{% block content %}
+<section class="text-center p-5 bg-white shadow rounded">
+    <h2 class="mb-3">Manage Your Business</h2>
+    <p class="lead mb-4">Streamline your GST billing and inventory management with ease.</p>
+
+    <div class="d-grid gap-3 mx-auto" style="max-width: 420px;">
+        <a href="{{ url_for('new_invoices') }}" class="btn btn-primary">Create Invoice</a>
+        <a href="{{ url_for('invoices') }}" class="btn btn-outline-primary">View Invoices</a>
+        <a href="{{ url_for('inventory') }}" class="btn btn-outline-secondary">Manage Inventory</a>
+        <a href="{{ url_for('customers') }}" class="btn btn-outline-info">Customer List</a>
+        <a href="{{ url_for('products') }}" class="btn btn-outline-warning">Product List</a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}Inventory | GST Bill Book{% endblock %}
+{% block content %}
+<section class="p-5 bg-white shadow rounded">
+    <h2>Inventory</h2>
+
+            <!-- Add New Stock Item Form -->
+            <h3>Add New Stock Item</h3>
+            <form action="{{ url_for('add_product') }}" method="post" class="mb-4">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Product Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price:</label>
+                    <input type="number" class="form-control" id="price" name="price" required>
+                </div>
+                <div class="mb-3">
+                    <label for="stock_quantity" class="form-label">Stock Quantity:</label>
+                    <input type="number" class="form-control" id="stock_quantity" name="stock_quantity" value="0">
+                </div>
+                <button type="submit" class="btn btn-success">Add Product</button>
+            </form>
+
+            <!-- Inventory Table -->
+            <h3>Available Stocks</h3>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Stock Quantity</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                        <tr>
+                            <td>{{ product.id }}</td>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.price }}</td>
+                            <td>{{ product.stock_quantity }}</td>
+                            <td>
+                                <!-- Edit Button -->
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#editProductModal{{ product.id }}">Edit</button>
+
+                                <!-- Delete Button -->
+                                <a href="{{ url_for('delete_product', product_id=product.id) }}"
+                                    class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+
+                        <!-- Edit Product Modal -->
+                        <div class="modal fade" id="editProductModal{{ product.id }}" tabindex="-1"
+                            aria-labelledby="editProductModalLabel{{ product.id }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editProductModalLabel{{ product.id }}">Edit
+                                            Product</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ url_for('update_product', product_id=product.id) }}"
+                                            method="post">
+                                            <div class="mb-3">
+                                                <label for="editName{{ product.id }}" class="form-label">Name:</label>
+                                                <input type="text" class="form-control" id="editName{{ product.id }}"
+                                                    name="name" value="{{ product.name }}" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="editPrice{{ product.id }}" class="form-label">Price:</label>
+                                                <input type="number" class="form-control"
+                                                    id="editPrice{{ product.id }}" name="price"
+                                                    value="{{ product.price }}" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="editStockQuantity{{ product.id }}"
+                                                    class="form-label">Stock Quantity:</label>
+                                                <input type="number" class="form-control"
+                                                    id="editStockQuantity{{ product.id }}" name="stock_quantity"
+                                                    value="{{ product.stock_quantity }}">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Update Product</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+{% endblock %}
