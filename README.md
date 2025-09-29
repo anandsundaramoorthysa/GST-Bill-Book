@@ -16,7 +16,7 @@ GST Bill Book is a Flask-based mini-application to manage GST invoicing, product
 ### Installation
 1) Clone the repository
 ```bash
-git clone https://github.com/your-username/GST-Bill-Book.git
+git clone https://github.com/anandsundaramoorthysa/GST-Bill-Book.git
 cd GST-Bill-Book
 ```
 2) Create a virtual environment and install requirements (Windows PowerShell)
@@ -55,7 +55,8 @@ Contributions are welcome! Please:
 - Open a pull request describing the changes
 
 ### License
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+This project is released under the MIT License. You are free to use, modify, and distribute the code under the terms of this license. See the [LICENSE](LICENSE) file in the repository for the full text.
 
 ### Contact Me
 If you have any questions or would like to collaborate, feel free to reach out:
